@@ -1,2 +1,3 @@
-# configuration_files
-Configuration files from arch
+# Configuration file for software
+
+1. Nvim
