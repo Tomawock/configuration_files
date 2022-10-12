@@ -1,3 +1,5 @@
 # Configuration file for software
 
-1. Nvim put the folder in `<home>/<username>/.config/nvim`
+## Nvim (Text editor and IDE)
+1. Put the folder in `<home>/<username>/.config/nvim`.
+1. Prerequisite: install `xclip` in order to correctly copy from nvim to other part of the os.
