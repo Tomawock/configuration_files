@@ -17,8 +17,9 @@ require('packer').startup(function(use)
 		'nvim-treesitter/nvim-treesitter',
 		-- run = ':TSUpdate'
 	}
+	use {'iamcco/markdown-preview.nvim'}
 	use {
-    'jedrzejboczar/toggletasks.nvim',
+    'jedrzejboczar/toggletasks.nvim',	-- Markdown Preview
     requires = {
         'akinsho/toggleterm.nvim',
 	    }

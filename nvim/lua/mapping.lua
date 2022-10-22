@@ -7,7 +7,7 @@ local key_mapper = function(mode, key, result)
 	{noremap = true, silent = true}
 	)
 end
--- Leader definition 
+-- Leader definition space will be the leader comand
 vim.g.mapleader = ' '
 -- Key mapping --
 key_mapper('', '<up>', '<nop>')
@@ -22,7 +22,7 @@ key_mapper('n','<F8>',':TagbarToggle<CR>')			-- function minimap
 key_mapper('','<leader>y','"+y')					-- nvim to clipboard
 key_mapper('v','<leader>p','"+p')					-- paste from clipboard
 key_mapper('','<leader><S-y>','"*y')				-- use this for xclip usage
-key_mapper('v','<leader><S-p>','"*p')				
+key_mapper('v','<leader><S-p>','"*p')				-- use this for xclip usage	
 -- FUZZY FINDER
 key_mapper('n', '<C-p>', ':lua require"telescope.builtin".find_files()<CR>')
 key_mapper('n', '<leader>fs', ':lua require"telescope.builtin".live_grep()<CR>')
@@ -40,4 +40,5 @@ key_mapper('n', 'K', ':lua vim.lsp.buf.hover()<CR>')
 key_mapper('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
 key_mapper('n', '<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
 key_mapper('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
-key_mapper('n','<C-S-<F5>>',':lua require."telescope.toggletasks".spawn()<CR>')
+-- Toggletask aka task of VScod-- Toggletask aka task of VScodee
+key_mapper('n','<F12>',':Telescope toggletasks spawn<CR>')
