@@ -13,17 +13,17 @@ require('packer').startup(function(use)
 	use 'nvim-lua/popup.nvim'			-- Necessary for Telescope
 	use 'nvim-lua/plenary.nvim'			-- Necessary for Telescope
 	use 'nvim-lua/telescope.nvim'		-- Fuzzy finder
+	use 'nvim-treesitter/nvim-treesitter' -- Tree seitter
+	use 'iamcco/markdown-preview.nvim' -- Markdown preview
 	use {
-		'nvim-treesitter/nvim-treesitter',
-		-- run = ':TSUpdate'
-	}
-	use {'iamcco/markdown-preview.nvim'}
-	use {
-    'jedrzejboczar/toggletasks.nvim',	-- Markdown Preview
+    'jedrzejboczar/toggletasks.nvim',	-- Manage task as VSCODE
     requires = {
         'akinsho/toggleterm.nvim',
 	    }
 	}
+	use 'startup-nvim/startup.nvim'		-- Start up for neovim the logo ecc 
+	use 'mfussenegger/nvim-dap'			-- Debugger interface 	
+	use 'rcarriga/nvim-dap-ui'			-- Debugger UI
 end)
 -- Start the plugin when necessary like autocompletition and lsp
 require("nvim-lsp-installer").setup()
@@ -142,3 +142,7 @@ require('toggletasks').setup {
     },
 }
 require('telescope').load_extension('toggletasks')
+
+require("startup").setup({
+	theme = "dashboard", -- put theme name here
+})
