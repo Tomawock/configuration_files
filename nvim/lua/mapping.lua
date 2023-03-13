@@ -1,10 +1,10 @@
 -- Key mapper helper function -- 
-local key_mapper = function(mode, key, result)
+local key_mapper = function(mode, key, result,desc)
 	vim.api.nvim_set_keymap(
 	mode,
 	key,
 	result,
-	{noremap = true, silent = true}
+	{noremap = true, silent = true,desc=desc}
 	)
 end
 -- Leader definition space will be the leader comand

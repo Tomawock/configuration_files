@@ -24,6 +24,9 @@ require('packer').startup(function(use)
 	use 'startup-nvim/startup.nvim'		-- Start up for neovim the logo ecc 
 	use 'mfussenegger/nvim-dap'			-- Debugger interface 	
 	use 'rcarriga/nvim-dap-ui'			-- Debugger UI
+	use { "folke/trouble.nvim",			-- Show diagnostics
+	requires = "nvim-tree/nvim-web-devicons",
+	}
 end)
 -- Start the plugin when necessary like autocompletition and lsp
 require("nvim-lsp-installer").setup()
@@ -33,7 +36,6 @@ local coq = require('coq')
 -- assign lsp server to clang 
 lsp.clangd.setup(coq.lsp_ensure_capabilities())
 lsp.cmake.setup(coq.lsp_ensure_capabilities())
-lsp.sumneko_lua.setup{coq.lsp_ensure_capabilities{}}
 
 -- Lualine config 
 require('lualine').setup {
@@ -67,7 +69,7 @@ require('lualine').setup {
 }
 require'nvim-treesitter.configs'.setup {
 	-- A list of parser names, or "all"
-	ensure_installed = { "cpp", "lua","cmake"},
+	ensure_installed = { "cpp","cmake"},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -146,3 +148,34 @@ require('telescope').load_extension('toggletasks')
 require("startup").setup({
 	theme = "dashboard", -- put theme name here
 })
+
+-- Debugger cpp
+local dap = require('dap')
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = '/home/tomawock/Documents/cpptools-linux/extension/debugAdapters/bin/OpenDebugAD7',
+}
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+	MIMode= 'gdb',
+	miDebuggerPath= '/usr/bin/gdb',
+	setupCommands = {  
+		{ 
+			text = '-enable-pretty-printing',
+			description =  'enable pretty printing',
+			ignoreFailures = false 
+		},
+	},
+  }
+}
+
+require("dapui").setup()
