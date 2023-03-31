@@ -7,7 +7,7 @@ local key_mapper = function(mode, key, result,desc)
 	{noremap = true, silent = true,desc=desc}
 	)
 end
--- Leader definition space will be the leader comand
+-- leader definition space will be the leader comand
 vim.g.mapleader = ' '
 -- Key mapping --
 key_mapper('', '<up>', '<nop>')
@@ -41,4 +41,17 @@ key_mapper('n', '<c-k>', ':lua vim.lsp.buf.signature_help()<CR>')
 key_mapper('n', '<leader>af', ':lua vim.lsp.buf.code_action()<CR>')
 key_mapper('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>')
 -- Toggletask aka task of VScod-- Toggletask aka task of VScodee
-key_mapper('n','<F12>',':Telescope toggletasks spawn<CR>')
+key_mapper('n','<leader>st',':Telescope toggletasks spawn<CR>')
+--debug 
+key_mapper('n', '<F5>', ':lua require"dap".continue()<CR>')
+key_mapper('n', '<F2>', ':lua require"dap".step_over()<CR>')
+key_mapper('n', '<F3>', ':lua require"dap".step_into()<CR>')
+key_mapper('n', '<F4>', ':lua require"dap".step_out()<CR>')
+key_mapper('n', '<F6>', ':lua require"dap".terminate()<CR>')
+key_mapper('n', '<leader>b', ':lua require"dap".toggle_breakpoint()<CR>')
+key_mapper('n', '<leader>B', ':lua require"dap".set_breakpoint()<CR>')
+key_mapper('n', '<leader>lp', ':lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>')
+key_mapper('n', '<leader>dr', ':lua require"dap".repl.open()<CR>')
+key_mapper('n', '<leader>dl', ':lua require"dap".run_last()<CR>')
+key_mapper('n', '<leader>dc', ':lua require"dapui".close()<CR>')
+

@@ -14,7 +14,7 @@ require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'			-- Necessary for Telescope
 	use 'nvim-lua/telescope.nvim'		-- Fuzzy finder
 	use 'nvim-treesitter/nvim-treesitter' -- Tree seitter
-	use 'iamcco/markdown-preview.nvim' -- Markdown preview
+	use 'iamcco/markdown-preview.nvim'		-- Markdown prev
 	use {
     'jedrzejboczar/toggletasks.nvim',	-- Manage task as VSCODE
     requires = {
@@ -179,3 +179,16 @@ dap.configurations.cpp = {
 }
 
 require("dapui").setup()
+
+-- Automatically open dap ui wheen debuggin is executed
+local dapui= require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+	dapui.open()
+end
+dap.listeners.after.event_terminated["dapui_config"] = function()
+	dapui.close()
+end
+dap.listeners.after.event_exited["dapui_config"] = function()
+	dapui.close()
+end
+
